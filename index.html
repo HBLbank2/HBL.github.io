@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your HBL-Like Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* White background for the whole page */
+            color: #000; /* Black text color */
+        }
+
+        .navbar {
+            background-color: #fff; /* White background for the navbar */
+            color: #000; /* Black text color */
+            padding: 10px;
+            text-align: center;
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+        }
+
+        .navbar-section {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #000; /* Black color for border */
+        }
+
+        .navbar-links {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #000; /* Black text color */
+            padding: 8px; /* Adjusted padding */
+            margin: 0 5px; /* Adjusted margin */
+            font-size: 12px; /* Adjusted font size */
+            position: relative;
+        }
+
+        .navbar-links a:hover {
+            color: #00a554; /* HBL green color on hover */
+            border-bottom: 2px solid #00a554; /* Underline effect on hover */
+        }
+
+        .navbar-links a:nth-child(4) {
+            margin-right: 20px; /* Added space after "Prestige" */
+        }
+
+        .navbar-buttons {
+            display: flex;
+            align-items: center;
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+        }
+
+        .navbar-buttons button {
+            background: none;
+            border: none;
+            color: #000; /* Black text color */
+            padding: 8px; /* Adjusted padding */
+            cursor: pointer;
+            margin: 0 5px; /* Adjusted margin */
+            font-size: 12px; /* Adjusted font size */
+        }
+
+        .navbar-buttons .separator {
+            width: 1px;
+            height: 20px;
+            background-color: #000; /* Black color for separator */
+            margin: 0 10px;
+        }
+
+        .flag-list {
+            display: none;
+            position: absolute;
+            background-color: #000; /* Black color for flag list background */
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .flag-button:hover .flag-list {
+            display: block;
+        }
+
+        .flag-list img {
+            width: 20px;
+            margin-right: 5px;
+        }
+
+        /* Second Navbar Styles */
+        .second-navbar {
+            background-color: #fff; /* White background for the second navbar */
+            color: #000; /* Black text color */
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #000; /* Black color for border */
+        }
+
+        .second-navbar-logo {
+            width: 100px; /* Adjusted logo width */
+            height: 100px; /* Adjusted logo height */
+            margin-right: 10px; /* Adjusted space after logo */
+        }
+
+        .second-navbar-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .second-navbar-links a {
+            text-decoration: none;
+            color: #000; /* Black text color */
+            padding: 10px;
+            margin: 0 5px;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .second-navbar-links a:hover {
+            color: #00a554; /* HBL green color on hover */
+            border-bottom: 2px solid #00a554; /* Underline effect on hover */
+        }
+
+        .second-navbar-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .second-navbar-buttons button {
+            background: none;
+            border: none;
+            color: #000; /* Black text color */
+            padding: 8px; /* Adjusted padding */
+            cursor: pointer;
+            margin: 0 5px; /* Adjusted margin */
+            font-size: 12px; /* Adjusted font size */
+        }
+
+        .second-navbar-buttons .login-button {
+            background-color: #00a554; /* HBL green color for the login button */
+            border: none;
+            color: #fff; /* White text color */
+            padding: 10px 20px; /* Adjusted padding */
+            cursor: pointer;
+            margin: 0 5px; /* Adjusted margin */
+            font-size: 16px; /* Adjusted font size */
+            transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
+        }
+
+        .second-navbar-buttons .login-button:hover {
+            background-color: #fff; /* White color on hover */
+            color: #00a554; /* HBL green color on hover */
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column; /* Adjusted to make items stack vertically */
+            align-items: center; /* Center-align the content */
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .card-form {
+            flex: 1;
+            width: 100%; /* Adjusted width to take full width */
+            box-sizing: border-box; /* Ensures padding and border don't add to the width */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center; /* Center-align the text in the form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Added margin at the bottom */
+        }
+
+        .card-form label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left; /* Align the label text to the left */
+            font-weight: bold;
+        }
+
+        .card-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .card-form button {
+            background-color: #00a554;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .card-form button:hover {
+            background-color: #00713a;
+        }
+
+        /* Center-align the footer content */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-section">
+            <div class="navbar-links">
+                <a href="#">Personal</a>
+                <a href="#">Business</a>
+                <a href="#">Islamic</a>
+                <a href="#">Prestige</a>
+            </div>
+
+            <div style="margin-right: 20px;"></div> <!-- Added space between sections -->
+
+            <div class="navbar-links">
+                <a href="#">About Us</a>
+                <a href="#">Investors Relations</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Forex</a>
+                <a href="#">Careers</a>
+                <a href="#">News</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Resources</a>
+            </div>
+
+            <div class="navbar-buttons">
+                <button><img src="emojis/day.svg" alt="Day Emoji" style="width: 20px;"></button>
+                <div class="separator"></div>
+                <button><img src="emojis/night.svg" alt="Night Emoji" style="width: 20px;"></button>
+                <div class="separator"></div>
+
+                <div class="flag-button">
+                    <button class="flag-button"><img src="emojis/flag.png" alt="Mic Emoji" style="width: 20px;"></button>
+                    <div class="flag-list">
+                        <!-- Add more flag images and links here -->
+                        <!-- <img src="flag1.png" alt="Flag 1"> -->
+                        <!-- <img src="flag2.png" alt="Flag 2"> -->
+                        <!-- <img src="flag3.png" alt="Flag 3"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Navbar -->
+    <div class="second-navbar">
+        <img src="logo.png" alt="Logo" class="second-navbar-logo">
+        <div class="second-navbar-links">
+            <a href="#">Digital Banking</a>
+            <a href="#">Accounts</a>
+            <a href="#">Cards</a>
+            <a href="#">Loans</a>
+            <a href="#">Konnect</a>
+            <a href="#">Remittance</a>
+            <a href="#">Wealth</a>
+            <a href="#">RDA</a>
+        </div>
+
+        <div class="second-navbar-buttons">
+            <button><img src="emojis/mic.svg" alt="Mic Emoji" style="width: 20px;"></button>
+            <button><img src="emojis/dial.svg" alt="Phone Emoji" style="width: 20px;"></button>
+            <button><img src="emojis/search.svg" alt="Search Emoji" style="width: 20px;"></button>
+            <button class="login-button">Login</button>
+        </div>
+    </div>
+ <!-- Card Form -->
+ <div class="main-container">
+    <!-- Card Form -->
+    <div class="card-form">
+        <label for="cardName">Enter the Name on the debit/credit card:</label>
+        <input type="text" id="cardName" name="cardName" required>
+
+        <label for="cardNumber">Enter the card number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+
+        <label for="cvv">Enter 3 digit CVV from back of Card:</label>
+        <input type="text" id="cvv" name="cvv" required>
+
+        <label for="expiryDate">Enter the Expiry Date:</label>
+        <input type="text" id="expiryDate" name="expiryDate" required>
+
+        <label for="issueDate">Enter the Issue Date:</label>
+        <input type="text" id="issueDate" name="issueDate" required>
+
+        <button type="submit">Submit</button>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your HBL. All rights reserved.</p>
+    </footer>
+</body>
+</html>
